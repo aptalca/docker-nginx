@@ -24,9 +24,9 @@ This Container is a simple nginx webserver configured with default and ssl, and 
 ```
 docker create \
 --name=nginx \
--v /etc/localtime:/etc/localtime:ro \
 -v <path to data>:/config \
 -e PGID=<gid> -e PUID=<uid>  \
+-e TZ=<timezone> \
 -p 80:80 -p 443:443 \
 linuxserver/nginx
 ```
@@ -35,12 +35,12 @@ linuxserver/nginx
 
 * `-p 80` - The web-services.
 * `-p 443` - The SSL-Based Webservice
-* `-v /etc/localtime` for timesync - *optional*
 * `-v /config` - Contains you www content and all relevant configuration files.
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
+* `-e TZ` for timezone information, eg Europe/London
 
-It is based on phusion-baseimage with ssh removed, for shell access whilst the container is running do `docker exec -it nginx /bin/bash`.
+It is based on alpine, for shell access whilst the container is running do `docker exec -it nginx /bin/bash`.
 
 ### User / Group Identifiers
 
@@ -62,10 +62,10 @@ Add your web files to /config/www for hosting.
 
 ## Updates
 
-* Upgrade to the latest version simply `docker restart nginx`.
 * To monitor the logs of the container in realtime `docker logs -f nginx`.
 
 ## Versions
 
++ **13.10.16:** Rebase to alpine
 + **10.09.16:** Add badges to README. 
 + **05.12.15:** Intial Release.
