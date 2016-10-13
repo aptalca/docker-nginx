@@ -1,5 +1,5 @@
 FROM lsiobase/alpine.nginx
-MAINTAINER Stian Larsen, sparklyballs
+MAINTAINER Stian Larsen, sparklyballs, aptalca
 
 # install packages
 RUN \
